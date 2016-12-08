@@ -1,0 +1,17 @@
+
+/* Using standard lib */
+arm-linux-gcc -fPIC -shared hardwareControl.c -o libhardwareControl.so -I /usr/lib/jvm/java-1.7.0-openjdk-amd64/include/
+
+
+/* Without using standard lib */
+/* Reason to use non-standard lib is that there is only libc.so under the tiny4412 android system */
+arm-linux-gcc -fPIC -shared hardwareControl.c -o libhardwareControl.so -I /usr/lib/jvm/java-1.7.0-openjdk-amd64/include/ -nostdlib /home/young/kun/android/srcs/android-5.0.2/prebuilts/ndk/9/platforms/android-19/arch-arm/usr/lib/libc.so
+
+
+/* Adding log.h header path in order to use __android_log_print function */
+arm-linux-gcc -fPIC -shared hardwareControl.c -o libhardwareControl.so -I /usr/lib/jvm/java-1.7.0-openjdk-amd64/include/ -nostdlib /home/young/kun/android/srcs/android-5.0.2/prebuilts/ndk/9/platforms/android-19/arch-arm/usr/lib/libc.so -I /home/young/kun/android/srcs/android-5.0.2/prebuilts/ndk/9/platforms/android-19/arch-arm/usr/include
+
+
+/* Adding liblog.so */
+arm-linux-gcc -fPIC -shared hardwareControl.c -o libhardwareControl.so -I /usr/lib/jvm/java-1.7.0-openjdk-amd64/include/ -nostdlib /home/young/kun/android/srcs/android-5.0.2/prebuilts/ndk/9/platforms/android-19/arch-arm/usr/lib/libc.so -I /home/young/kun/android/srcs/android-5.0.2/prebuilts/ndk/9/platforms/android-19/arch-arm/usr/include /home/young/kun/android/srcs/android-5.0.2/prebuilts/ndk/9/platforms/android-19/arch-arm/usr/lib/liblog.so
+
